@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-ruby-deployment
+  namespace: hello-ruby
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-ruby
+  template:
+    metadata:
+      labels:
+        app: hello-ruby
+    spec:
+      imagePullSecrets:
+        - name: nexus-secret
+      containers:
+      - name: hello-ruby
+        image: 127.0.0.1:30085/my-repository/hello-ruby:v001
+        ports:
+        - containerPort: 4567
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-ruby-service
+  namespace: hello-ruby
+spec:
+  selector:
+    app: hello-ruby
+  ports:
+    - protocol: TCP
+      port: 4567  # Service port
+      targetPort: 4567  # Container port
+  type: ClusterIP
