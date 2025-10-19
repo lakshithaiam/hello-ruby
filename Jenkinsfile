@@ -83,9 +83,9 @@ spec:
         stage('Build - Tag - Push') {
             steps {
                 container('dind') {
-                    sh 'docker build -t nexus-service-for-docker-hosted-registry.nexus.svc.cluster.local:8085/my-repository/hello-ruby:v001 .'
-                    sh 'docker push nexus-service-for-docker-hosted-registry.nexus.svc.cluster.local:8085/my-repository/hello-ruby:v001'
-                    sh 'docker pull nexus-service-for-docker-hosted-registry.nexus.svc.cluster.local:8085/my-repository/hello-ruby:v001'
+                    sh 'docker build -t nexus-service-for-docker-hosted-registry.nexus.svc.cluster.local:8085/my-repository/hello-ruby:v004 .'
+                    sh 'docker push nexus-service-for-docker-hosted-registry.nexus.svc.cluster.local:8085/my-repository/hello-ruby:v004'
+                    sh 'docker pull nexus-service-for-docker-hosted-registry.nexus.svc.cluster.local:8085/my-repository/hello-ruby:v004'
                     sh 'docker image ls'
                 }
             }
